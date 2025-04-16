@@ -12,7 +12,7 @@ export default function Countdown({
   minutes?: number;
   isPaused?: boolean;
   progresspercent?: (percent: number) => void;
-  onEnd?: () => void;
+  onEnd?: (callback: () => void) => void;
 }) {
   const [millisecs, setMillisecs] = useState<number | null>(null);
   const [progressscore, setProgresscore] = useState<number>(0);
@@ -25,11 +25,16 @@ export default function Countdown({
     return minutes * 60 * 1000;
   };
 
+  // resettimer
+  const resetTimer = () => {
+    setMillisecs(convertminutestomillisecs(minutes!));
+  };
+
   const countDown = () => {
     setMillisecs((time) => {
       if (time === null || time === 0) {
         interval.current && clearInterval(interval.current);
-        onEnd!();
+        onEnd!(resetTimer);
         return 0;
       }
 
@@ -65,6 +70,7 @@ export default function Countdown({
     };
   }, [isPaused]);
 
+  // calculate-percent-progress
   useEffect(() => {
     progresspercent!(calcPercent());
   }, [millisecs]);

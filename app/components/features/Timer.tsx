@@ -13,7 +13,7 @@ export default function Timer({
 }) {
   const [timerpaused, seTimerpaused] = useState<boolean>(true);
   const [progresstrack, setProgresstrack] = useState<number>(100);
-  const [minu, setMin] = useState<number>(0.3);
+  const [minu, setMin] = useState<number>(0.1);
   const ONE_SECOND_IN_MS = 1000;
 
   const PATTERN = [
@@ -38,15 +38,21 @@ export default function Timer({
         break;
     }
   };
+
+  const onEndfunction = (payload: () => void) => {
+    Vibration.vibrate(PATTERN);
+    payload();
+    seTimerpaused(true);
+    // setProgresstrack(100);
+  };
+  // setProgresstrack(0);
   return (
     <View style={styles.parentcontainer}>
       <View style={styles.container}>
         <Countdown
           isPaused={timerpaused}
           progresspercent={(percent) => setProgresstrack(percent)}
-          onEnd={() => {
-            Vibration.vibrate(PATTERN);
-          }}
+          onEnd={(argfunc) => onEndfunction(argfunc)}
           minutes={minu}
         />
         <View style={styles.subjectFocus}>
