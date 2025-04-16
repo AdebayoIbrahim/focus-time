@@ -13,7 +13,6 @@ export default function Index() {
 
   const handletimerended = () => {
     setFocushistory((prev) => [...prev, currentsubject!]);
-    setCurrentsubject(null);
   };
   return (
     <GenericParentView>

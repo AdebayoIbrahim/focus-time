@@ -48,7 +48,6 @@ export default function Timer({
     payload();
     seTimerpaused(true);
     hastimerended && hastimerended();
-    // setProgresstrack(100);
   };
   // setProgresstrack(0);
   return (

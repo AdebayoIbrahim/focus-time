@@ -1,11 +1,28 @@
 import React from "react";
 import { View, StyleSheet, FlatList, Text } from "react-native";
-import { spacings } from "@/utils/sizes";
+import { fontsizes, spacings } from "@/utils/sizes";
 import { Colors } from "@/utils/colors";
 const Focushistory = ({ history }: { history: string[] }) => {
+  if (!history || history.length < 1) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.textlist}>You are yet to Focus on a Task</Text>
+      </View>
+    );
+  }
+
+  const renderedItem = ({ item }: { item: string }) => {
+    return (
+      <View>
+        <Text style={styles.textlist}>- {item}</Text>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.textlist}>history</Text>
+      <Text style={styles.textlistheader}>My Focus history:</Text>
+      <FlatList data={history} renderItem={renderedItem} />
     </View>
   );
 };
@@ -17,7 +34,13 @@ const styles = StyleSheet.create({
     paddingInline: spacings.md,
   },
 
+  textlistheader: {
+    fontSize: fontsizes.xvl,
+    color: Colors.whiteaccent,
+  },
   textlist: {
+    fontSize: fontsizes.xl,
+    paddingTop: spacings.sm,
     color: Colors.whiteaccent,
   },
 });
