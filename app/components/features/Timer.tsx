@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet, Vibration } from "react-native";
+import { useKeepAwake } from "expo-keep-awake";
 import { Colors } from "@/utils/colors";
 import { spacings, fontsizes, flexsizes } from "@/utils/sizes";
 import Roundedbutton from "../Roundedbutton";
@@ -11,6 +12,7 @@ export default function Timer({
   focusingtasks: string | null;
   cancelfocus: (data: string | null) => void;
 }) {
+  useKeepAwake();
   const [timerpaused, seTimerpaused] = useState<boolean>(true);
   const [progresstrack, setProgresstrack] = useState<number>(100);
   const [minu, setMin] = useState<number>(0.1);
