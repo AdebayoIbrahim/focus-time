@@ -1,15 +1,16 @@
+import { Colors } from "@/utils/colors";
 import { Stack } from "expo-router";
 import React, { ReactNode } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 
 export default function RootLayout() {
   return (
     <>
+      <StatusBar barStyle="light-content" backgroundColor={Colors.darkblue} />
       <Stack
         screenOptions={{
-          // title: "Focustime",
           headerStyle: {
-            backgroundColor: "fff",
+            backgroundColor: "black",
           },
           headerTitleAlign: "center",
           // headerLeft: () => (

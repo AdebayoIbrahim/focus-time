@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     paddingBlock: spacings.lg,
     backgroundColor: Colors.darkblue,
     color: Colors.whiteaccent,
+    // paddingTop: spacings.max,
   },
 });
 export default GenericParentView;

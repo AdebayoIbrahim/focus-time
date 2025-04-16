@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Text, StyleSheet, Image } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import { Text, StyleSheet, Image, StatusBar } from "react-native";
+// import { StatusBar } from "expo-status-bar";
 import { Stack } from "expo-router";
 import { Colors } from "@/utils/colors";
 import Focustime from "./components/features/foustime";
@@ -16,15 +16,15 @@ export default function Index() {
   };
   return (
     <GenericParentView>
-      <StatusBar style="auto" />
       <Stack.Screen
         options={{
           title: "Focustime",
           headerStyle: {
-            backgroundColor: Colors.whiteaccent,
+            backgroundColor: Colors.darkblue,
           },
+          headerShadowVisible: false,
           headerShown: true,
-          headerTintColor: "black",
+          headerTintColor: Colors.whiteaccent,
         }}
       />
       {!currentsubject ? (
