@@ -44,7 +44,7 @@ export default function Focustime({
 
 const styles = StyleSheet.create({
   container: {
-    flex: flexsizes.xl,
+    // flex: flexsizes.xl,
   },
 
   inputcontainer: {

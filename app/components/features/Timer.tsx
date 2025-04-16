@@ -8,9 +8,11 @@ import Countdown from "../countdown";
 export default function Timer({
   focusingtasks,
   cancelfocus,
+  hastimerended,
 }: {
   focusingtasks: string | null;
   cancelfocus: (data: string | null) => void;
+  hastimerended?: () => void;
 }) {
   useKeepAwake();
   const [timerpaused, seTimerpaused] = useState<boolean>(true);
@@ -45,6 +47,7 @@ export default function Timer({
     Vibration.vibrate(PATTERN);
     payload();
     seTimerpaused(true);
+    hastimerended && hastimerended();
     // setProgresstrack(100);
   };
   // setProgresstrack(0);
