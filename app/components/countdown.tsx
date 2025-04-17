@@ -5,7 +5,7 @@ import { spacings, fontsizes } from "@/utils/sizes";
 
 export default function Countdown({
   minutes,
-  isPaused = true,
+  isPaused,
   progresspercent,
   onEnd,
 }: {
@@ -13,6 +13,7 @@ export default function Countdown({
   isPaused?: boolean;
   progresspercent?: (percent: number) => void;
   onEnd?: (callback: () => void) => void;
+  // onEnd?: () => void;
 }) {
   const [millisecs, setMillisecs] = useState<number | null>(null);
   const [progressscore, setProgresscore] = useState<number>(0);
@@ -32,9 +33,12 @@ export default function Countdown({
 
   const countDown = () => {
     setMillisecs((time) => {
-      if (time === null || time === 0) {
+      if (time === null || time <= 0) {
         interval.current && clearInterval(interval.current);
-        onEnd!(resetTimer);
+        // deffers/hold-for-state-update/rerendering before running to fix issus-async way
+        setTimeout(() => {
+          onEnd!(resetTimer);
+        }, 0);
         return 0;
       }
 
